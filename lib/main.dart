@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
-import 'package:yemek_uygulamasi_bp/models/renklr.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:yemek_uygulamasi_bp/models/ekran_boyut.dart';
+import 'package:yemek_uygulamasi_bp/models/renkler.dart';
 import 'package:yemek_uygulamasi_bp/ui/views/anasayfa.dart';
 import 'package:yemek_uygulamasi_bp/ui/views/detay_sayfa.dart';
 import 'package:yemek_uygulamasi_bp/ui/views/sepet_sayfa.dart';
@@ -29,31 +31,37 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         body: sayfalar[index],
         bottomNavigationBar: CurvedNavigationBar(
+          iconPadding: EkranBoyut.yukseklik(context, 0.0175),
           animationCurve: Curves.elasticInOut,
-          animationDuration: Durations.extralong1,
+          animationDuration: Durations.long1,
           buttonBackgroundColor: Renkler().sari,
-          height: 70,
-          backgroundColor: Colors.transparent,
+          height: EkranBoyut.yukseklik(context, 0.1),
+          backgroundColor: Renkler().beyaz,
           color: Renkler().yesil,
           items: [
             CurvedNavigationBarItem(
-              labelStyle: TextStyle(color: Renkler().beyaz),
-              child: const Icon(
-                Icons.home_outlined,
+              labelStyle: GoogleFonts.bungee(color: Renkler().beyaz),
+              child: Icon(
+                Icons.menu_book_rounded,
+                size: EkranBoyut.yukseklik(context, 0.05),
               ),
               label: 'Ana Sayfa',
             ),
             CurvedNavigationBarItem(
-              labelStyle: TextStyle(color: Renkler().beyaz),
-              child: const Icon(Icons.search),
-              label: 'Search',
+              labelStyle: GoogleFonts.bungee(color: Renkler().beyaz),
+              child: Icon(
+                Icons.local_pizza_rounded,
+                size: EkranBoyut.yukseklik(context, 0.05),
+              ),
+              label: 'Yemek Detay',
             ),
             CurvedNavigationBarItem(
-              labelStyle: TextStyle(color: Renkler().beyaz),
-              child: const Icon(
-                Icons.chat_bubble_outline,
+              labelStyle: GoogleFonts.bungee(color: Renkler().beyaz),
+              child: Icon(
+                Icons.shopping_basket_rounded,
+                size: EkranBoyut.yukseklik(context, 0.05),
               ),
-              label: 'Chat',
+              label: 'Sepet',
             ),
           ],
           onTap: (index) {
