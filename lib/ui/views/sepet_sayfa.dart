@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yemek_uygulamasi_bp/data/entity/sepet_yemek.dart';
-import 'package:yemek_uygulamasi_bp/data/entity/yemekler.dart';
 import 'package:yemek_uygulamasi_bp/models/ekran_boyut.dart';
 import 'package:yemek_uygulamasi_bp/models/renkler.dart';
 import 'package:yemek_uygulamasi_bp/ui/cubit/sepet_sayfa_cubit.dart';
 
 class SepetSayfa extends StatefulWidget {
-  late int adet;
+  int adet = 0;
   late double fiyat;
 
   @override
@@ -25,6 +24,7 @@ class _SepetSayfaState extends State<SepetSayfa> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Renkler().beyaz,
       appBar: AppBar(
         backgroundColor: Renkler().yesil,
         title: Text(
@@ -51,7 +51,7 @@ class _SepetSayfaState extends State<SepetSayfa> {
                           children: [
                             Text(
                               yemek.yemek_adi,
-                              style: GoogleFonts.bungee(),
+                              style: GoogleFonts.bungee(color: Renkler().yesil),
                             ),
                             Text(
                               "Fiyat :${yemek.yemek_fiyat} ₺",
@@ -89,7 +89,6 @@ class _SepetSayfaState extends State<SepetSayfa> {
                     ),
                   ),
                 );
-                //context.read<SepetSayfaCubit>().sepetYukle();
               },
             );
           } else {

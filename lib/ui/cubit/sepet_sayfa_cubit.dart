@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yemek_uygulamasi_bp/data/entity/sepet_yemek.dart';
-import 'package:yemek_uygulamasi_bp/data/entity/yemekler.dart';
 import 'package:yemek_uygulamasi_bp/data/repo/yemeklerdao_repository.dart';
 
 class SepetSayfaCubit extends Cubit<List<SepetYemek>> {
@@ -33,4 +31,5 @@ class SepetSayfaCubit extends Cubit<List<SepetYemek>> {
     var list = await yrepo.sepetYukle();
     emit(list);
   }
+
 }

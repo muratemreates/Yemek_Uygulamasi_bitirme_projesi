@@ -3,14 +3,12 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:yemek_uygulamasi_bp/data/entity/yemekler.dart';
 import 'package:yemek_uygulamasi_bp/models/ekran_boyut.dart';
 import 'package:yemek_uygulamasi_bp/models/renkler.dart';
 import 'package:yemek_uygulamasi_bp/ui/cubit/anasayfa_cubit.dart';
 import 'package:yemek_uygulamasi_bp/ui/cubit/sepet_sayfa_cubit.dart';
 import 'package:yemek_uygulamasi_bp/ui/cubit/yemek_listesi_cubit.dart';
 import 'package:yemek_uygulamasi_bp/ui/views/anasayfa.dart';
-import 'package:yemek_uygulamasi_bp/ui/views/detay_sayfa.dart';
 import 'package:yemek_uygulamasi_bp/ui/views/sepet_sayfa.dart';
 import 'package:yemek_uygulamasi_bp/ui/views/yemek_listesi.dart';
 
@@ -25,8 +23,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var sayfalar = [const Anasayfa(), YemekKatalog(), SepetSayfa()];
+  var sayfalar = [const Anasayfa(), const YemekKatalog(), SepetSayfa()];
   int index = 0;
+  var sepetdolu = false;
 
   @override
   Widget build(BuildContext context) {
@@ -73,12 +72,15 @@ class _MyAppState extends State<MyApp> {
                     Icons.shopping_basket_rounded,
                     size: EkranBoyut.yukseklik(context, 0.05),
                   ),
-                  const Positioned(
+                  Positioned(
                       left: 20,
-                      child: Icon(
-                        Icons.circle,
-                        color: Colors.red,
-                        size: 21,
+                      child: Visibility(
+                        visible: sepetdolu,
+                        child: const Icon(
+                          Icons.circle,
+                          color: Colors.red,
+                          size: 21,
+                        ),
                       ))
                 ]),
                 label: 'Sepet',

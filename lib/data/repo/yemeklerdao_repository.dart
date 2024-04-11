@@ -56,4 +56,6 @@ class YemeklerDaoRepository {
     var cevap = await Dio().post(url, data: FormData.fromMap(veri));
     return parseSepetYemekler(cevap.data.toString());
   }
+
+
 }

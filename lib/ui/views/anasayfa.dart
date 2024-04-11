@@ -8,7 +8,6 @@ import 'package:yemek_uygulamasi_bp/ui/cubit/anasayfa_cubit.dart';
 import 'package:yemek_uygulamasi_bp/ui/cubit/sepet_sayfa_cubit.dart';
 import 'package:yemek_uygulamasi_bp/ui/views/detay_sayfa.dart';
 import 'package:yemek_uygulamasi_bp/ui/views/profil.dart';
-import 'package:yemek_uygulamasi_bp/ui/views/sepet_sayfa.dart';
 
 class Anasayfa extends StatefulWidget {
   const Anasayfa({super.key});
@@ -18,6 +17,8 @@ class Anasayfa extends StatefulWidget {
 }
 
 class _AnasayfaState extends State<Anasayfa> {
+  int adet = 0;
+
   @override
   void initState() {
     super.initState();
@@ -33,20 +34,14 @@ class _AnasayfaState extends State<Anasayfa> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              "DoyDoy",
-              style: GoogleFonts.bungee(
-                  color: Renkler().sari,
-                  fontSize: EkranBoyut.yukseklik(context, 0.05)),
-            ),
             Row(
               children: [
-                SizedBox(
-                    height: EkranBoyut.yukseklik(context, 0.065),
-                    width: EkranBoyut.genislik(context, 0.75),
-                    child: const SearchBar(
-                      hintText: "Yemek ara..",
-                    )),
+                Text(
+                  "DoyDoy",
+                  style: GoogleFonts.bungee(
+                      color: Renkler().sari,
+                      fontSize: EkranBoyut.yukseklik(context, 0.05)),
+                ),
                 const Spacer(),
                 Container(
                   decoration: BoxDecoration(
@@ -79,7 +74,7 @@ class _AnasayfaState extends State<Anasayfa> {
               return GridView.builder(
                 itemCount: yemeklerListesi.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, childAspectRatio: 1 / 1.8),
+                    crossAxisCount: 2, childAspectRatio: 1 / 2),
                 itemBuilder: (context, index) {
                   var yemek = yemeklerListesi[index];
                   return GestureDetector(
@@ -100,7 +95,9 @@ class _AnasayfaState extends State<Anasayfa> {
                         children: <Widget>[
                           Text(
                             "DOYDOY",
-                            style: GoogleFonts.bungee(color: Renkler().yesil),
+                            style: GoogleFonts.bungee(
+                                color: Renkler().yesil,
+                                fontSize: EkranBoyut.yukseklik(context, 0.02)),
                           ),
                           SizedBox(
                             height: EkranBoyut.yukseklik(context, 0.30),
@@ -124,6 +121,15 @@ class _AnasayfaState extends State<Anasayfa> {
                               const Spacer(),
                               IconButton(
                                   onPressed: () {
+                                    adet++;
+                                    context.read<SepetSayfaCubit>().ekle(
+                                        yemek.yemek_adi,
+                                        yemek.yemek_resim_adi,
+                                        yemek.yemek_fiyat,
+                                        adet.toString(),
+                                        (adet *
+                                            double.parse(yemek.yemek_fiyat)));
+                                    adet = 0;
                                     print("Sepete eklendi..");
                                   },
                                   tooltip: "Sepete Ekle",

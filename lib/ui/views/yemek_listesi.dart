@@ -24,6 +24,7 @@ class _YemekKatalogState extends State<YemekKatalog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Renkler().beyaz,
         appBar: AppBar(
           title: Text(
             'Yemek Kataloğu',
