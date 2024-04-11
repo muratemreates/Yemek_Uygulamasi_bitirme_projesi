@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
+import 'package:yemek_uygulamasi_bp/models/renklr.dart';
 import 'package:yemek_uygulamasi_bp/ui/views/anasayfa.dart';
 import 'package:yemek_uygulamasi_bp/ui/views/detay_sayfa.dart';
 import 'package:yemek_uygulamasi_bp/ui/views/sepet_sayfa.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var sayfalar = [Anasayfa(), DetaySayfa(), SepetSayfa()];
+  var sayfalar = [const Anasayfa(), const DetaySayfa(), const SepetSayfa()];
   int index = 0;
 
   @override
@@ -28,20 +29,30 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         body: sayfalar[index],
         bottomNavigationBar: CurvedNavigationBar(
+          animationCurve: Curves.elasticInOut,
+          animationDuration: Durations.extralong1,
+          buttonBackgroundColor: Renkler().sari,
+          height: 70,
           backgroundColor: Colors.transparent,
-          color: Colors.green,
-
-          items: const [
+          color: Renkler().yesil,
+          items: [
             CurvedNavigationBarItem(
-              child: Icon(Icons.home_outlined,color: Colors.white,),
-              label: 'Home',
+              labelStyle: TextStyle(color: Renkler().beyaz),
+              child: const Icon(
+                Icons.home_outlined,
+              ),
+              label: 'Ana Sayfa',
             ),
             CurvedNavigationBarItem(
-              child: Icon(Icons.search),
+              labelStyle: TextStyle(color: Renkler().beyaz),
+              child: const Icon(Icons.search),
               label: 'Search',
             ),
             CurvedNavigationBarItem(
-              child: Icon(Icons.chat_bubble_outline),
+              labelStyle: TextStyle(color: Renkler().beyaz),
+              child: const Icon(
+                Icons.chat_bubble_outline,
+              ),
               label: 'Chat',
             ),
           ],
