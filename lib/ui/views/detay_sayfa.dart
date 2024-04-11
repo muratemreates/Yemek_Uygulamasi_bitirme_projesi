@@ -94,7 +94,7 @@ class _DetaySayfaState extends State<DetaySayfa> {
                             widget.yemek.yemek_adi,
                             widget.yemek.yemek_resim_adi,
                             widget.yemek.yemek_fiyat,
-                            adet.toString());
+                            adet.toString(),fiyat );
                       } else {
                         print("Adet en az 1 olmalı");
                       }

@@ -25,7 +25,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var sayfalar = [const Anasayfa(), YemekKatalog(), SepetSayfa(adet: 0, fiyat: 0)];
+  var sayfalar = [const Anasayfa(), YemekKatalog(), SepetSayfa()];
   int index = 0;
 
   @override

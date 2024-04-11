@@ -14,6 +14,7 @@ class SepetSayfaCubit extends Cubit<List<SepetYemek>> {
     String yemek_resim_adi,
     String yemek_fiyat,
     String yemek_siparis_adet,
+    double ucret,
   ) async {
     await yrepo.ekle(
       yemek_adi,
@@ -21,6 +22,11 @@ class SepetSayfaCubit extends Cubit<List<SepetYemek>> {
       yemek_fiyat,
       yemek_siparis_adet,
     );
+  }
+
+  Future<void> sil(String sepet_yemek_id) async {
+    await yrepo.sil(sepet_yemek_id);
+    await sepetYukle();
   }
 
   Future<void> sepetYukle() async {

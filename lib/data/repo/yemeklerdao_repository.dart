@@ -22,6 +22,16 @@ class YemeklerDaoRepository {
     return parseYemekler(cevap.data);
   }
 
+  Future<void> sil(String sepet_yemek_id) async {
+    var url = "http://kasimadalan.pe.hu/yemekler/sepettenYemekSil.php";
+    var veri = {
+      "sepet_yemek_id": sepet_yemek_id,
+      "kullanici_adi": kullaniciAdi
+    };
+    var cevap = await Dio().post(url, data: FormData.fromMap(veri));
+    print("Sipariş silindi : ${cevap.data.toString()}");
+  }
+
   Future<void> ekle(
     String yemek_adi,
     String yemek_resim_adi,
@@ -38,7 +48,6 @@ class YemeklerDaoRepository {
     };
     var cevap = await Dio().post(url, data: FormData.fromMap(veri));
     print("Kişi kaydet : ${cevap.data.toString()} : $kullaniciAdi");
-    
   }
 
   Future<List<SepetYemek>> sepetYukle() async {
